@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import InputButton from './InputButton';
+import ClearButton from './ClearButton';
 
 // Define the input buttons that will be displayed in the calculator.
 const inputButtons = [
@@ -35,6 +36,7 @@ class ReactCalculator extends Component{
                 <View style={Style.displayContainer}>
                     <Text style={Style.displayText}>{this.state.inputValue}</Text>
                 </View>
+                <View style ={Style.clearContainer}>{this._renderClearButton()}</View>
                 <View style={Style.inputContainer}>{this._renderInputButtons()}</View>
             </View>
         )
@@ -111,6 +113,21 @@ class ReactCalculator extends Component{
             inputValue: inputValue
         })
     }
+
+    _renderClearButton(){
+
+        return <ClearButton onPress ={this._onClearPress.bind(this)}/>
+
+
+    }
+    _onClearPress(){
+        this.setState({
+            previousInputValue: 0,
+            inputValue: 0,
+            selectedSymbol: null,
+        });
+    }
+
 }
 
 
